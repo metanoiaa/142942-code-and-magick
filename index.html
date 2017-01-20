@@ -32,6 +32,35 @@
                                                               width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
 
+<script type="text/javascript">
+  var fireballSize = 22;
+  var fireballSpeedFairwind = 5;
+  var fireballSpeedUpwind = 2;
+  var wizardSpeed = 3;
+  var wizardWidth = 70;
+
+  var getFireballSpeed = function(left) {
+    if(left) {
+      return fireballSpeedFairwind;
+    } else {
+      return fireballSpeedUpwind;
+    }
+  };
+
+  var getWizardHeight = function() {
+    return 1.337 * wizardWidth;
+  };
+
+  var getWizardX = function(width) {
+    return width / 2;
+  };
+
+  var getWizardY = function(height) {
+    return height / 3 * 2; // почему так не срабатывает?
+  };
+
+</script>
+
 <script src="js/game.js" type="application/javascript"></script>
 
 </body>
