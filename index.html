@@ -34,10 +34,10 @@
 
 <script type="text/javascript">
   var fireballSize = 22;
-  var fireballSpeedFairwind = 5;
-  var fireballSpeedUpwind = 2;
   var wizardSpeed = 3;
   var wizardWidth = 70;
+  var fireballSpeedFairwind = 5;
+  var fireballSpeedUpwind = 2;
 
   var getFireballSpeed = function(left) {
     if(left) {
@@ -46,17 +46,17 @@
       return fireballSpeedUpwind;
     }
   };
-
+// функция, которая возвращает пропорциональную высоту мага 
   var getWizardHeight = function() {
     return 1.337 * wizardWidth;
   };
-
+// функция, при которой центр фигурки мага находится посередине игрового поля
   var getWizardX = function(width) {
-    return width / 2;
+    return width / 2 - wizardWidth / 2;
   };
-
+// функция, при которой маг появляется на высоте 2/3 игрового поля от земли
   var getWizardY = function(height) {
-    return height / 3 * 2; // почему так не срабатывает?
+    return height / 3;
   };
 
 </script>
