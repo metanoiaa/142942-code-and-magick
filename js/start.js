@@ -1,6 +1,6 @@
 'use strict';
 
-window.drawCloud = function (ctx, x, y, width, height) {
+var drawCloud = function (ctx, x, y, width, height) {
   var offset = 10;
   ctx.beginPath();
   ctx.moveTo(x, y);
@@ -28,13 +28,17 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
-  var max = -1;
+  // получение максимального элемента массива
+  var max = getMaxValue(times);
 
-  for (var i =0; i <times.length; i++) {
-    var time = times[i];
-    if (time > max) {
-      max = time;
+  function getMaxValue(times){
+    var max = times[0];
+    for (var i = 0; i < times.length; i++) { 
+      if (max < times[i]) {
+        max = times[i];
+      }
     }
+    return max;
   }
 
   var histoHeight = 150;
@@ -50,7 +54,7 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillText(time.toFixed(0), histoX + columnIndent * i, 90 + histoHeight - height); 
 
-    if (name === "Надя") {
+    if (name === "Вы") {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       // расчет насыщенности цвета мне не понятен
@@ -62,5 +66,3 @@ window.renderStatistics = function (ctx, names, times) {
   }
 };
 
-var canvas = document.querySelector('canvas');
-window.renderStatistics(canvas.getContext('2d'), ['Надя','Мария','Анна','Алена'], [252.15,230.21,270.11,301.13]);
