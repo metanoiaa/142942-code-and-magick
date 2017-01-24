@@ -1,6 +1,7 @@
 'use strict';
 
-var drawCloud = function (ctx, x, y, width, height) {
+var drawCloud = function (ctx, x, y, width, height, fillColor) {
+  ctx.fillStyle = fillColor;
   var offset = 10;
   ctx.beginPath();
   ctx.moveTo(x, y);
@@ -16,12 +17,13 @@ var drawCloud = function (ctx, x, y, width, height) {
 };
 
 var drawText = function (ctx, x, y, text) {
+  ctx.fillStyle = 'black';
   ctx.font = '16px PT Mono';
   ctx.fillText(text, x, y);
 };
 
 // получение максимального элемента массива
-var getMaxValue = function (times){
+var getMaxValue = function (times) {
   var max = times[0];
   for (var i = 0; i < times.length; i++) { 
     if (max < times[i]) {
@@ -29,16 +31,13 @@ var getMaxValue = function (times){
     }
   }
   return max;
-}
+};
 
 window.renderStatistics = function (ctx, names, times) {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  drawCloud(ctx, 110, 20, 420, 270);
+  drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
 
-  ctx.fillStyle = 'rgba(256, 256, 256, 1.0)';
-  drawCloud(ctx, 100, 10, 420, 270);
+  drawCloud(ctx, 100, 10, 420, 270, 'rgba(256, 256, 256, 1.0)');
 
-  ctx.fillStyle = 'black';
   drawText(ctx, 120, 40, 'Ура вы победили!');
   drawText(ctx, 120, 60, 'Список результатов:');
 
