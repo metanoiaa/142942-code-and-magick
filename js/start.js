@@ -15,6 +15,22 @@ var drawCloud = function (ctx, x, y, width, height) {
   ctx.fill();
 };
 
+var drawText = function (ctx, x, y, text) {
+  ctx.font = '16px PT Mono';
+  ctx.fillText(text, x, y);
+};
+
+// получение максимального элемента массива
+var getMaxValue = function (times){
+  var max = times[0];
+  for (var i = 0; i < times.length; i++) { 
+    if (max < times[i]) {
+      max = times[i];
+    }
+  }
+  return max;
+}
+
 window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   drawCloud(ctx, 110, 20, 420, 270);
@@ -23,23 +39,10 @@ window.renderStatistics = function (ctx, names, times) {
   drawCloud(ctx, 100, 10, 420, 270);
 
   ctx.fillStyle = 'black';
-  ctx.font = '16px PT Mono';
+  drawText(ctx, 120, 40, 'Ура вы победили!');
+  drawText(ctx, 120, 60, 'Список результатов:');
 
-  ctx.fillText('Ура вы победили!', 120, 40);
-  ctx.fillText('Список результатов:', 120, 60);
-
-  // получение максимального элемента массива
   var max = getMaxValue(times);
-
-  function getMaxValue(times){
-    var max = times[0];
-    for (var i = 0; i < times.length; i++) { 
-      if (max < times[i]) {
-        max = times[i];
-      }
-    }
-    return max;
-  }
 
   var histoHeight = 150;
   var histoX = 150;
@@ -52,17 +55,17 @@ window.renderStatistics = function (ctx, names, times) {
 
     var height = step * time;
 
-    ctx.fillText(time.toFixed(0), histoX + columnIndent * i, 90 + histoHeight - height); 
+    drawText(ctx, histoX + columnIndent * i, 90 + histoHeight - height, time.toFixed(0));
 
     if (name === "Вы") {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      // расчет насыщенности цвета мне не понятен
-      ctx.fillStyle = ['rgba(0, 0, ', ((Math.random() * 5) * 50).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join(''); 
+      // расчет насыщенности цвета
+      ctx.fillStyle = ['rgba(0, 0, ', (Math.random() * 255).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join(''); 
     }
     ctx.fillRect(histoX + columnIndent * i, 100 + histoHeight - height, 40, height);
     ctx.fillStyle = "black";
-    ctx.fillText(name, histoX + columnIndent * i, 100 + histoHeight + 20);
+    drawText(ctx, histoX + columnIndent * i, 100 + histoHeight + 20, name);
   }
 };
 
