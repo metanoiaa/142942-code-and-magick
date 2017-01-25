@@ -25,7 +25,7 @@ var drawText = function (ctx, x, y, text) {
 // получение максимального элемента массива
 var getMaxValue = function (times) {
   var max = times[0];
-  for (var i = 0; i < times.length; i++) { 
+  for (var i = 0; i < times.length; i++) {
     if (max < times[i]) {
       max = times[i];
     }
@@ -36,11 +36,11 @@ var getMaxValue = function (times) {
 var drawColumn = function (ctx, columnX, columnY, time, name, height) {
   drawText(ctx, columnX, columnY, time.toFixed(0));
 
-  if (name === "Вы") {
+  if (name === 'Вы') {
     ctx.fillStyle = 'rgba(255, 0, 0, 1)';
   } else {
     // расчет насыщенности цвета
-    ctx.fillStyle = ['rgba(0, 0, ', (Math.random() * 255).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join(''); 
+    ctx.fillStyle = ['rgba(0, 0, ', (Math.random() * 255).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join('');
   }
   ctx.fillRect(columnX, 10 + columnY, 40, height);
   drawText(ctx, columnX, 10 + columnY + height + 20, name);
