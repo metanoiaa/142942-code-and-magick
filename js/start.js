@@ -33,14 +33,20 @@ var getMaxValue = function (times) {
   return max;
 };
 
-window.renderStatistics = function (ctx, names, times) {
-  drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
+var drawColumn = function (ctx, columnX, columnY, time, name, height) {
+  drawText(ctx, columnX, columnY, time.toFixed(0));
 
-  drawCloud(ctx, 100, 10, 420, 270, 'rgba(256, 256, 256, 1.0)');
+  if (name === "Вы") {
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+  } else {
+    // расчет насыщенности цвета
+    ctx.fillStyle = ['rgba(0, 0, ', (Math.random() * 255).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join(''); 
+  }
+  ctx.fillRect(columnX, 10 + columnY, 40, height);
+  drawText(ctx, columnX, 10 + columnY + height + 20, name);
+};
 
-  drawText(ctx, 120, 40, 'Ура вы победили!');
-  drawText(ctx, 120, 60, 'Список результатов:');
-
+var drawGraph = function (ctx, names, times) {
   var max = getMaxValue(times);
 
   var histoHeight = 150;
@@ -54,17 +60,21 @@ window.renderStatistics = function (ctx, names, times) {
 
     var height = step * time;
 
-    drawText(ctx, histoX + columnIndent * i, 90 + histoHeight - height, time.toFixed(0));
+    var columnX = histoX + columnIndent * i;
+    var columnY = 90 + histoHeight - height;
 
-    if (name === "Вы") {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      // расчет насыщенности цвета
-      ctx.fillStyle = ['rgba(0, 0, ', (Math.random() * 255).toFixed(0), ',', (Math.random()).toFixed(1), ')'].join(''); 
-    }
-    ctx.fillRect(histoX + columnIndent * i, 100 + histoHeight - height, 40, height);
-    ctx.fillStyle = "black";
-    drawText(ctx, histoX + columnIndent * i, 100 + histoHeight + 20, name);
+    drawColumn(ctx, columnX, columnY, time, name, height);
   }
+};
+
+window.renderStatistics = function (ctx, names, times) {
+  drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
+
+  drawCloud(ctx, 100, 10, 420, 270, 'rgba(256, 256, 256, 1.0)');
+
+  drawText(ctx, 120, 40, 'Ура вы победили!');
+  drawText(ctx, 120, 60, 'Список результатов:');
+
+  drawGraph(ctx, names, times);
 };
 
