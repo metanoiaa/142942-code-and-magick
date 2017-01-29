@@ -62,7 +62,8 @@ wizardEyes.addEventListener('click', function () {
 
 // Изменение цвета фаерболов по нажатию
 fireball.addEventListener('click', function () {
-  // Алгоритм изменения цвета по порядку в списке
-  fireball.style.background = fireballColors[1];
+  // Алгоритм изменения цвета случайным образом
+  var colorNumberFireball = Math.floor(Math.random() * wizardEyesColors.length);
+  fireball.style.background = fireballColors[colorNumberFireball];
 });
 
