@@ -32,14 +32,52 @@ var fireballColors = [
   '#e6e848'
 ];
 
+var ENTER_KEY_CODE = 13;
+var ESCAPE_KEY_CODE = 27;
+
+var isActivateEvent = function (event) {
+  return event.keyCode && event.keyCode === ENTER_KEY_CODE;
+};
+
+var setupKeydownHandler = function (event) {
+  if (event.keyCode === ESCAPE_KEY_CODE) {
+    setup.classList.add('invisible');
+  }
+};
+
+var showSetupElement = function () {
+  setup.classList.remove('invisible');
+  // Когда диалог открыт, то клавиша ESC должна закрывать диалог
+  document.addEventListener('keydown', setupKeydownHandler);
+};
+
+var hideSetupElement = function () {
+  setup.classList.add('invisible');
+  document.removeEventListener('keydown', setupKeydownHandler);
+};
+
 // Открытие окна настройки персонажа
 setupOpen.addEventListener('click', function () {
-  setup.classList.remove('invisible');
+  showSetupElement();
+});
+
+// Открытие окна настройки персонажа с клавиатуры:
+setupOpen.addEventListener('keydown', function (event) {
+  if (isActivateEvent(event)) {
+    showSetupElement();
+  }
 });
 
 // Закрытие окна настройки персонажа
 setupClose.addEventListener('click', function () {
-  setup.classList.add('invisible');
+  hideSetupElement();
+});
+
+// Закрытие окна настройки персонажа с клавиатуры:
+setupClose.addEventListener('keydown', function (event) {
+  if (isActivateEvent(event)) {
+    hideSetupElement();
+  }
 });
 
 // Валидация ввода имени персонажа
