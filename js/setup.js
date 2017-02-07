@@ -4,9 +4,6 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var nameField = setup.querySelector('.setup-user-name');
-var wizardCoat = document.querySelector('#wizard-coat');
-var wizardEyes = document.querySelector('#wizard-eyes');
-var fireball = document.querySelector('.setup-fireball-wrap');
 
 var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
@@ -81,9 +78,9 @@ window.colorizeElement(
 
 window.colorizeElement(
   document.querySelector('.setup-fireball-wrap'), [
-    '#ee4830',
-    '#30a8ee',
-    '#5ce6c0',
-    '#e848d5',
-    '#e6e848'
+    'rgb(238, 72, 48)',
+    'rgb(48, 168, 238)',
+    'rgb(92, 230, 192)',
+    'rgb(232, 72, 213)',
+    'rgb(230, 232, 72)'
   ], 'background');
