@@ -9,7 +9,7 @@ window.getRandomElement = function (array) {
 window.getRandomElementExcept = function (array, exceptElement) {
   var newColor = exceptElement;
   while (newColor === exceptElement) {
-    newColor = getRandomElement(array);
+    newColor = window.getRandomElement(array);
   }
   return newColor;
 };
