@@ -4,33 +4,6 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var nameField = setup.querySelector('.setup-user-name');
-var wizard = document.querySelector('#wizard');
-var wizardCoat = wizard.querySelector('#wizard-coat');
-var wizardEyes = wizard.querySelector('#wizard-eyes');
-var fireball = document.querySelector('.setup-fireball-wrap');
-
-var wizardCoatColors = [
-  'rgb(101, 137, 164)',
-  'rgb(241, 43, 107)',
-  'rgb(146, 100, 161)',
-  'rgb(56, 159, 117)',
-  'rgb(215, 210, 55)',
-  'rgb(0, 0, 0)'
-];
-var wizardEyesColors = [
-  'black',
-  'red',
-  'blue',
-  'yellow',
-  'green'
-];
-var fireballColors = [
-  '#ee4830',
-  '#30a8ee',
-  '#5ce6c0',
-  '#e848d5',
-  '#e6e848'
-];
 
 var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
@@ -84,24 +57,30 @@ setupClose.addEventListener('keydown', function (event) {
 nameField.required = true;
 nameField.maxLength = 50;
 
-// Изменение цвета мантии персонажа по нажатию
-wizardCoat.addEventListener('click', function () {
-  // Алгоритм изменения цвета случайным образом
-  var colorNumberCoat = Math.floor(Math.random() * wizardCoatColors.length);
-  wizardCoat.style.fill = wizardCoatColors[colorNumberCoat];
-});
+window.colorizeElement(
+  document.querySelector('#wizard-coat'), [
+    'rgb(101, 137, 164)',
+    'rgb(241, 43, 107)',
+    'rgb(146, 100, 161)',
+    'rgb(56, 159, 117)',
+    'rgb(215, 210, 55)',
+    'rgb(0, 0, 0)'
+  ], 'fill');
 
-// Изменение цвета глаз персонажа по нажатию
-wizardEyes.addEventListener('click', function () {
-  // Алгоритм изменения цвета случайным образом
-  var colorNumberEyes = Math.floor(Math.random() * wizardEyesColors.length);
-  wizardEyes.style.fill = wizardCoatColors[colorNumberEyes];
-});
+window.colorizeElement(
+  document.querySelector('#wizard-eyes'), [
+    'black',
+    'red',
+    'blue',
+    'yellow',
+    'green'
+  ], 'fill');
 
-// Изменение цвета фаерболов по нажатию
-fireball.addEventListener('click', function () {
-  // Алгоритм изменения цвета случайным образом
-  var colorNumberFireball = Math.floor(Math.random() * wizardEyesColors.length);
-  fireball.style.background = fireballColors[colorNumberFireball];
-});
-
+window.colorizeElement(
+  document.querySelector('.setup-fireball-wrap'), [
+    'rgb(238, 72, 48)',
+    'rgb(48, 168, 238)',
+    'rgb(92, 230, 192)',
+    'rgb(232, 72, 213)',
+    'rgb(230, 232, 72)'
+  ], 'background');
