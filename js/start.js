@@ -78,5 +78,5 @@
 
     drawGraph(ctx, names, times);
   };
-});
+})();
 
