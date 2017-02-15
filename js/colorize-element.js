@@ -1,8 +1,8 @@
 'use strict';
 
-(function () {
+window.colorizeElement = (function () {
   // Изменение цвета мантии/глаз персонажа
-  window.colorizeElement = function (element, colors, property) {
+  return function (element, colors, property) {
     element.addEventListener('click', function () {
       var currentColor = element.style[property];
       var tmp = window.utils.getRandomElementExcept(colors, currentColor);
