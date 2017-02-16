@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+window.renderStatistics = (function () {
   var drawCloud = function (ctx, x, y, width, height, fillColor) {
     ctx.fillStyle = fillColor;
     var offset = 10;
@@ -68,7 +68,7 @@
     }
   };
 
-  var renderStatistics = function (ctx, names, times) {
+  return function (ctx, names, times) {
     drawCloud(ctx, 110, 20, 420, 270, 'rgba(0, 0, 0, 0.7)');
 
     drawCloud(ctx, 100, 10, 420, 270, 'rgba(256, 256, 256, 1.0)');
@@ -78,9 +78,5 @@
 
     drawGraph(ctx, names, times);
   };
-
-  return {
-    renderStatistics: renderStatistics
-  }
 })();
 
